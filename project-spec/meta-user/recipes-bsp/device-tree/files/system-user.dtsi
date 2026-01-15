@@ -29,6 +29,12 @@
         dma-names = "tx_channel", "rx_channel";
     };
 
+    dma_proxy {
+        compatible ="xlnx,dma_proxy";
+        dmas = <&axi_dma_0 0  &axi_dma_0 1>;
+        dma-names = "dma_proxy_tx", "dma_proxy_rx";
+    };
+
 	misc_clk_a: misc_clk_a {
 		#clock-cells = <0>;
 		clock-frequency = <12000000>;
@@ -82,7 +88,12 @@
 };
 
 &spw_0_axi_gpio {
-  gpio-line-names = "linkdis", "linkstart", "errdisc", "started", "running", "connecting", "errcred", "erresc", "errpar", "rxempty", "rxfull";
+  gpio-line-names = "spw0_linkdis", "spw0_linkstart", "spw0_errdisc", "spw0_started", "spw0_running", "spw0_connecting", "spw0_errcred", "spw0_erresc", "spw0_errpar", "spw0_rxempty", "spw0_rxfull";
+  xlnx,dout-default = <0x00000001>;
+};
+
+&spw_1_axi_gpio {
+  gpio-line-names = "spw1_linkdis", "spw1_linkstart", "spw1_errdisc", "spw1_started", "spw1_running", "spw1_connecting", "spw1_errcred", "spw1_erresc", "spw1_errpar", "spw1_rxempty", "spw1_rxfull";
   xlnx,dout-default = <0x00000001>;
 };
 
