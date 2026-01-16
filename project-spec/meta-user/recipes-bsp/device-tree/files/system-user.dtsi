@@ -21,7 +21,7 @@
 	};
 
 	dma_proxy1 {
-		compatible ="xlnx,dma_proxy";
+		compatible ="xlnx,dma_spw";
 		dmas = <&spw_0_axi_dma 0  &spw_0_axi_dma 1>;
 		dma-names = "dma_proxy_tx", "dma_proxy_rx";
 	};
@@ -149,7 +149,9 @@
 
 / {
 	thermal-zones {
-		active-thermal {
+		/delete-node/ pl-thermal; /* Remove your previous attempt if it exists */
+
+		pl-thermal {
 			polling-delay = <10000>;
 			thermal-sensors = <&tsens_pl>;
 
