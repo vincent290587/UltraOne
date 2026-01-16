@@ -3,19 +3,19 @@
 / {
 
 	reserved-memory {
-		#address-cells = <1>;
-		#size-cells = <1>;
+		#address-cells = <2>;
+		#size-cells = <2>;
 		ranges;
 
 		/* 128 MB reserved for tests on DMA */
-		dma_src_reserved: buffer@50000000 {
+		dma_src_reserved: buffer@0000000050000000 {
+			compatible = "shared-dma-pool";
 			no-map;
-			reg = <0x50000000 0x08000000>;
+			reg = <0x0 0x50000000 0x0 0x08000000>;
 		};
 	};
 
 	axidma_chrdev0: axidma_chrdev@0 {
-	    memory-region = <&dma_src_reserved>;
 		compatible = "xlnx,axidma-chrdev";
 		dmas = <&axi_dma_0 0 &axi_dma_0 1>;
 		dma-names = "tx_channel", "rx_channel";
@@ -82,6 +82,7 @@
 };
 
 &axi_dma_0 {
+	memory-region = <&dma_src_reserved>;
 	dma-channel@80080000 {
 		xlnx,device-id = <0x0>;
 	};
