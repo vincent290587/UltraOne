@@ -2,27 +2,28 @@
 #include <dt-bindings/thermal/thermal.h>
 / {
 
-	axidma_chrdev0: axidma_chrdev@0 {
-		compatible = "xlnx,axidma-chrdev";
-		dmas = <&axi_dma_0 0 &axi_dma_0 1>;
-		dma-names = "tx_channel", "rx_channel";
+	reserved-memory {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+
+		/* 128 MB reserved for tests on DMA */
+		dma_src_reserved: buffer@50000000 {
+			no-map;
+			reg = <0x50000000 0x08000000>;
+		};
 	};
 
-	axidma_chrdev1: axidma_chrdev@1 {
+	axidma_chrdev0: axidma_chrdev@0 {
+	    memory-region = <&dma_src_reserved>;
 		compatible = "xlnx,axidma-chrdev";
-		dmas = <&spw_0_axi_dma 0 &spw_0_axi_dma 1>;
+		dmas = <&axi_dma_0 0 &axi_dma_0 1>;
 		dma-names = "tx_channel", "rx_channel";
 	};
 
 	dma_proxy0 {
 		compatible ="xlnx,dma_proxy";
 		dmas = <&axi_dma_0 0  &axi_dma_0 1>;
-		dma-names = "dma_proxy_tx", "dma_proxy_rx";
-	};
-
-	dma_proxy1 {
-		compatible ="xlnx,dma_spw";
-		dmas = <&spw_0_axi_dma 0  &spw_0_axi_dma 1>;
 		dma-names = "dma_proxy_tx", "dma_proxy_rx";
 	};
 
@@ -73,15 +74,6 @@
 		xlnx,device-id = <0x0>;
 	};
 	dma-channel@80080030 {
-		xlnx,device-id = <0x1>;
-	};
-};
-
-&spw_0_axi_dma {
-	dma-channel@80030000 {
-		xlnx,device-id = <0x0>;
-	};
-	dma-channel@80030030 {
 		xlnx,device-id = <0x1>;
 	};
 };
