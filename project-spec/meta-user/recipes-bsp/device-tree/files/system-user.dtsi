@@ -1,56 +1,46 @@
 /include/ "system-conf.dtsi"
 #include <dt-bindings/thermal/thermal.h>
 / {
-    reserved-memory {
-        #address-cells = <1>;
-        #size-cells = <1>;
-        ranges;
 
-        /* New CMA reservation (e.g., 128MB at 0x31000000) */
-        linux,cma {
-            compatible = "shared-dma-pool";
-            reusable;   /* Essential for CMA: allows kernel to use it when idle */
-            size = <0x08000000>;
-            alignment = <0x00001000>;
-            alloc-ranges = <0x31000000 0x08000000>;
-            linux,cma-default; /* Makes this the default pool for the system */
-        };
+	axidma_chrdev0: axidma_chrdev@0 {
+		compatible = "xlnx,axidma-chrdev";
+		dmas = <&axi_dma_0 0 &axi_dma_0 1>;
+		dma-names = "tx_channel", "rx_channel";
+	};
 
-    };
+	axidma_chrdev1: axidma_chrdev@1 {
+		compatible = "xlnx,axidma-chrdev";
+		dmas = <&spw_0_axi_dma 0 &spw_0_axi_dma 1>;
+		dma-names = "tx_channel", "rx_channel";
+	};
 
-    axidma_chrdev: axidma_chrdev@0 {
-        compatible = "xlnx,axidma-chrdev";
-        dmas = <&axi_dma_0 0 &axi_dma_0 1>;
-        dma-names = "tx_channel", "rx_channel";
-    };
+	dma_proxy0 {
+		compatible ="xlnx,dma_proxy";
+		dmas = <&axi_dma_0 0  &axi_dma_0 1>;
+		dma-names = "dma_proxy_tx", "dma_proxy_rx";
+	};
 
-    axidma_chrdev2: axidma_chrdev@0 {
-        compatible = "xlnx,axidma-chrdev";
-        dmas = <&spw_0_axi_dma 0 &spw_0_axi_dma 1>;
-        dma-names = "tx_channel", "rx_channel";
-    };
+	dma_proxy1 {
+		compatible ="xlnx,dma_proxy";
+		dmas = <&spw_0_axi_dma 0  &spw_0_axi_dma 1>;
+		dma-names = "dma_proxy_tx", "dma_proxy_rx";
+	};
 
-    dma_proxy {
-        compatible ="xlnx,dma_proxy";
-        dmas = <&axi_dma_0 0  &axi_dma_0 1>;
-        dma-names = "dma_proxy_tx", "dma_proxy_rx";
-    };
+	/* Virtual PWM controller using your GPIO */
+	soft_pwm: pwm-gpio {
+		compatible = "pwm-gpio";
+		#pwm-cells = <3>;
+		/* GPIO number and polarity */
+		gpios = <&fan_gpio 0 0>;
+	};
 
-    /* Virtual PWM controller using your GPIO */
-    soft_pwm: pwm-gpio {
-        compatible = "pwm-gpio";
-        #pwm-cells = <3>;
-        /* GPIO number and polarity */
-        gpios = <&fan_gpio 0 0>;
-    };
-
-    /* Define the fan using the virtual PWM */
-    fan0: pwm-fan {
-        compatible = "pwm-fan";
-        pwms = <&soft_pwm 0 10000 0>;
-        cooling-levels = <0 64 128 192 255>;
-        #cooling-cells = <2>;
-    };
+	/* Define the fan using the virtual PWM */
+	fan0: pwm-fan {
+		compatible = "pwm-fan";
+		pwms = <&soft_pwm 0 10000 0>;
+		cooling-levels = <0 64 128 192 255>;
+		#cooling-cells = <2>;
+	};
 
 	misc_clk_a: misc_clk_a {
 		#clock-cells = <0>;
@@ -79,39 +69,39 @@
 };
 
 &axi_dma_0 {
-  dma-channel@80080000 {
-    xlnx,device-id = <0x0>;
-  };
-  dma-channel@80080030 {
-    xlnx,device-id = <0x1>;
-  };
+	dma-channel@80080000 {
+		xlnx,device-id = <0x0>;
+	};
+	dma-channel@80080030 {
+		xlnx,device-id = <0x1>;
+	};
 };
 
 &spw_0_axi_dma {
-  dma-channel@80030000 {
-    xlnx,device-id = <0x0>;
-  };
-  dma-channel@80030030 {
-    xlnx,device-id = <0x1>;
-  };
+	dma-channel@80030000 {
+		xlnx,device-id = <0x0>;
+	};
+	dma-channel@80030030 {
+		xlnx,device-id = <0x1>;
+	};
 };
 
 &axi_gpio_btn {
-  gpio-line-names = "btn1", "btn2", "btn3", "btn4";
+	gpio-line-names = "btn1", "btn2", "btn3", "btn4";
 };
 
 &axi_gpio_leds {
-  gpio-line-names = "led1", "led2", "led3", "led4";
+	gpio-line-names = "led1", "led2", "led3", "led4";
 };
 
 &spw_0_axi_gpio {
-  gpio-line-names = "spw0_linkdis", "spw0_linkstart", "spw0_errdisc", "spw0_started", "spw0_running", "spw0_connecting", "spw0_errcred", "spw0_erresc", "spw0_errpar", "spw0_rxempty", "spw0_rxfull";
-  xlnx,dout-default = <0x00000001>;
+	gpio-line-names = "spw0_linkdis", "spw0_linkstart", "spw0_errdisc", "spw0_started", "spw0_running", "spw0_connecting", "spw0_errcred", "spw0_erresc", "spw0_errpar", "spw0_rxempty", "spw0_rxfull";
+	xlnx,dout-default = <0x00000001>;
 };
 
 &spw_1_axi_gpio {
-  gpio-line-names = "spw1_linkdis", "spw1_linkstart", "spw1_errdisc", "spw1_started", "spw1_running", "spw1_connecting", "spw1_errcred", "spw1_erresc", "spw1_errpar", "spw1_rxempty", "spw1_rxfull";
-  xlnx,dout-default = <0x00000001>;
+	gpio-line-names = "spw1_linkdis", "spw1_linkstart", "spw1_errdisc", "spw1_started", "spw1_running", "spw1_connecting", "spw1_errcred", "spw1_erresc", "spw1_errpar", "spw1_rxempty", "spw1_rxfull";
+	xlnx,dout-default = <0x00000001>;
 };
 
 &fan_gpio {
@@ -119,25 +109,25 @@
 };
 
 &i2c1 {
-        clock-frequency = <400000>;
-        eeprom@50{
-                compatible = "atmel,24c04";
-                reg = <0x50>;
-                pagesize = <16>;
-        };
+	clock-frequency = <400000>;
+	eeprom@50{
+		compatible = "atmel,24c04";
+		reg = <0x50>;
+		pagesize = <16>;
+	};
 };
 
 &qspi {
-        status = "okay";
+	status = "okay";
 };
 
 &flash0 {
 	is-dual = <0>;
 	num-cs = <1>;
 	spi-rx-bus-width = <4>;
-        spi-tx-bus-width = <4>;
-        compatible ="jedec,spi-nor";
-        reg= <0x0>;
+	spi-tx-bus-width = <4>;
+	compatible ="jedec,spi-nor";
+	reg= <0x0>;
 };
 
 /* SD */
@@ -148,8 +138,8 @@
 
 /* USB  */
 &dwc3_0 {
-    status = "okay";
-    dr_mode = "host";
+	status = "okay";
+	dr_mode = "host";
 };
 
 /* Ensure the AMS and fan are actually enabled */
@@ -158,45 +148,46 @@
 };
 
 / {
-    thermal-zones {
-        active-thermal {
-            polling-delay = <1000>; /* Poll every 1s for better responsiveness */
+	thermal-zones {
+		active-thermal {
+			polling-delay = <10000>;
+			thermal-sensors = <&tsens_pl>;
 
-            trips {
-                fan_low: fan-low {
-                    temperature = <30000>; /* 30°C */
-                    hysteresis = <2000>;
-                    type = "active";
-                };
-                fan_mid: fan-mid {
-                    temperature = <45000>; /* 45°C */
-                    hysteresis = <2000>;
-                    type = "active";
-                };
-                fan_high: fan-high {
-                    temperature = <60000>; /* 60°C */
-                    hysteresis = <2000>;
-                    type = "active";
-                };
-            };
+			trips {
+				fan_low: fan-low {
+					temperature = <30000>; /* 30°C */
+					hysteresis = <2000>;
+					type = "active";
+				};
+				fan_mid: fan-mid {
+					temperature = <45000>; /* 45°C */
+					hysteresis = <2000>;
+					type = "active";
+				};
+				fan_high: fan-high {
+					temperature = <60000>; /* 60°C */
+					hysteresis = <2000>;
+					type = "active";
+				};
+			};
 
-            cooling-maps {
-                /* At 30C, set fan to level 1 (64/255 ~25% speed) */
-                map1 {
-                    trip = <&fan_low>;
-                    cooling-device = <&fan0 1 1>;
-                };
-                /* At 45C, set fan to level 2 (128/255 ~50% speed) */
-                map2 {
-                    trip = <&fan_mid>;
-                    cooling-device = <&fan0 2 2>;
-                };
-                /* At 60C, set fan to level 4 (255/255 = 100% speed) */
-                map3 {
-                    trip = <&fan_high>;
-                    cooling-device = <&fan0 4 4>;
-                };
-            };
-        };
-    };
+			cooling-maps {
+				/* At 30C, set fan to level 1 (64/255 ~25% speed) */
+				map1 {
+					trip = <&fan_low>;
+					cooling-device = <&fan0 1 1>;
+				};
+				/* At 45C, set fan to level 2 (128/255 ~50% speed) */
+				map2 {
+					trip = <&fan_mid>;
+					cooling-device = <&fan0 2 2>;
+				};
+				/* At 60C, set fan to level 4 (255/255 = 100% speed) */
+				map3 {
+					trip = <&fan_high>;
+					cooling-device = <&fan0 4 4>;
+				};
+			};
+		};
+	};
 };
