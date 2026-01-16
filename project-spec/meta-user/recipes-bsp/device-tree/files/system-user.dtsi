@@ -32,14 +32,14 @@
 		compatible = "pwm-gpio";
 		#pwm-cells = <3>;
 		/* GPIO number and polarity */
-		gpios = <&fan_gpio 0 0>;
+		gpios = <&fan_gpio 0 GPIO_ACTIVE_HIGH>;
 	};
 
 	/* Define the fan using the virtual PWM */
 	fan0: pwm-fan {
 		compatible = "pwm-fan";
 		pwms = <&soft_pwm 0 10000 0>;
-		cooling-levels = <0 64 128 192 255>;
+		cooling-levels = <8 16 64 192 255>;
 		#cooling-cells = <2>;
 	};
 
@@ -144,7 +144,7 @@
 		/delete-node/ pl-thermal; /* Remove your previous attempt if it exists */
 
 		pl-thermal {
-			polling-delay = <10000>;
+			polling-delay = <1500>;
 			thermal-sensors = <&tsens_pl>;
 
 			trips {
