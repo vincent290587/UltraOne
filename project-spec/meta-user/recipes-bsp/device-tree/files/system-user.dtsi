@@ -1,4 +1,5 @@
 /include/ "system-conf.dtsi"
+#include <dt-bindings/thermal/thermal.h>
 / {
     reserved-memory {
         #address-cells = <1>;
@@ -33,6 +34,22 @@
         compatible ="xlnx,dma_proxy";
         dmas = <&axi_dma_0 0  &axi_dma_0 1>;
         dma-names = "dma_proxy_tx", "dma_proxy_rx";
+    };
+
+    /* Virtual PWM controller using your GPIO */
+    soft_pwm: pwm-gpio {
+        compatible = "pwm-gpio";
+        #pwm-cells = <3>;
+        /* GPIO number and polarity */
+        gpios = <&fan_gpio 0 0>;
+    };
+
+    /* Define the fan using the virtual PWM */
+    fan0: pwm-fan {
+        compatible = "pwm-fan";
+        pwms = <&soft_pwm 0 10000 0>;
+        cooling-levels = <0 64 128 192 255>;
+        #cooling-cells = <2>;
     };
 
 	misc_clk_a: misc_clk_a {
@@ -133,4 +150,53 @@
 &dwc3_0 {
     status = "okay";
     dr_mode = "host";
+};
+
+/* Ensure the AMS and fan are actually enabled */
+&ams {
+	status = "okay";
+};
+
+/ {
+    thermal-zones {
+        active-thermal {
+            polling-delay = <1000>; /* Poll every 1s for better responsiveness */
+
+            trips {
+                fan_low: fan-low {
+                    temperature = <30000>; /* 30°C */
+                    hysteresis = <2000>;
+                    type = "active";
+                };
+                fan_mid: fan-mid {
+                    temperature = <45000>; /* 45°C */
+                    hysteresis = <2000>;
+                    type = "active";
+                };
+                fan_high: fan-high {
+                    temperature = <60000>; /* 60°C */
+                    hysteresis = <2000>;
+                    type = "active";
+                };
+            };
+
+            cooling-maps {
+                /* At 30C, set fan to level 1 (64/255 ~25% speed) */
+                map1 {
+                    trip = <&fan_low>;
+                    cooling-device = <&fan0 1 1>;
+                };
+                /* At 45C, set fan to level 2 (128/255 ~50% speed) */
+                map2 {
+                    trip = <&fan_mid>;
+                    cooling-device = <&fan0 2 2>;
+                };
+                /* At 60C, set fan to level 4 (255/255 = 100% speed) */
+                map3 {
+                    trip = <&fan_high>;
+                    cooling-device = <&fan0 4 4>;
+                };
+            };
+        };
+    };
 };
