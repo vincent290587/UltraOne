@@ -22,7 +22,7 @@ SRC_URI = "file://ds1308_test.sh \
 
 S = "${WORKDIR}"
 
-FILES_${PN} += "/home/root/shells_for_testing_peripheral_devices/*"
+FILES_${PN} += "/home/petalinux/shells_for_testing_peripheral_devices/*"
 
 do_install() {
 	     install -d ${D}/home/root/shells_for_testing_peripheral_devices
