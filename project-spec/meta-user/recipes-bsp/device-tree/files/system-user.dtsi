@@ -64,35 +64,21 @@
 
 };
 
-// &axi_fifo_mm_s_0 {
-// 	compatible = "xlnx,axi-fifo-mm-s-4.3", "xlnx,axi-fifo-mm-s-4.2", "xlnx,axi-fifo-mm-s-4.1";
-// };
-
-// &spw_0_axi_fifo_mm_s_0 {
-// 	compatible = "xlnx,axi-fifo-mm-s-4.3", "xlnx,axi-fifo-mm-s-4.2", "xlnx,axi-fifo-mm-s-4.1";
-// };
-
-// &spw_1_axi_fifo_mm_s_0 {
-// 	compatible = "xlnx,axi-fifo-mm-s-4.3", "xlnx,axi-fifo-mm-s-4.2", "xlnx,axi-fifo-mm-s-4.1";
-// };
-
-// &axi_dma_0 {
-//     compatible = "sitf,spw_dma-1.0";
-// 	memory-region = <&dma_src_reserved>;
-// };
-
 &spw_0_axi_dma_0 {
     compatible = "sitf,spw_dma-1.0";
 	memory-region = <&dma_src_reserved0>;
+	control-regs = <&spw_0_spw_status_regs>;
 };
 
 &spw_1_axi_dma_0 {
     compatible = "sitf,spw_dma-1.0";
 	memory-region = <&dma_src_reserved1>;
+	control-regs = <&spw_1_spw_status_regs>;
 };
 
 &pps_system_axi_gpio_0 {
-	gpio-line-names = "ppsa", "ppsb", "ppsa_kill", "ppsb_kill";
+	gpio-line-names = "ppsa", "ppsb", "ppsa_in", "ppsb_in", "ppsa_en", "ppsb_en";
+	xlnx,dout-default-2 = <0x00000003>;
 };
 
 &axi_gpio_btn {
@@ -101,16 +87,6 @@
 
 &axi_gpio_leds {
 	gpio-line-names = "led1", "led2", "led3", "led4";
-};
-
-&spw_0_axi_gpio {
-	gpio-line-names = "spw0_linkdis", "spw0_linkstart", "spw0_div0", "spw0_div1", "spw0_div2", "spw0_div3", "spw0_div4", "spw0_div5", "spw0_div6", "spw0_div7",	"spw0_errdisc", "spw0_started", "spw0_running", "spw0_connecting", "spw0_errcred", "spw0_erresc", "spw0_errpar", "spw0_rxempty", "spw0_rxfull";
-	xlnx,dout-default = <0x00000021>;
-};
-
-&spw_1_axi_gpio {
-	gpio-line-names = "spw1_linkdis", "spw1_linkstart", "spw1_div0", "spw1_div1", "spw1_div2", "spw1_div3", "spw1_div4", "spw1_div5", "spw1_div6", "spw1_div7", "spw1_errdisc", "spw1_started", "spw1_running", "spw1_connecting", "spw1_errcred", "spw1_erresc", "spw1_errpar", "spw1_rxempty", "spw1_rxfull";
-	xlnx,dout-default = <0x00000021>;
 };
 
 &fan_gpio {
