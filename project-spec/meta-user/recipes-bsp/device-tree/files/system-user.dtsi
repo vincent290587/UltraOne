@@ -1,7 +1,13 @@
 /include/ "system-conf.dtsi"
 #include <dt-bindings/thermal/thermal.h>
 #include <dt-bindings/phy/phy.h>
+
 / {
+	
+	aliases {
+		mmc0 = &sdhci1; // Point mmc0 to the SD slot
+		mmc1 = &sdhci0; // Point mmc1 to the eMMC slot
+	};
 
 	reserved-memory {
 		#address-cells = <2>;
