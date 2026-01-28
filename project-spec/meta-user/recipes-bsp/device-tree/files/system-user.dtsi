@@ -1,5 +1,6 @@
 /include/ "system-conf.dtsi"
 #include <dt-bindings/thermal/thermal.h>
+#include <dt-bindings/phy/phy.h>
 / {
 
 	reserved-memory {
@@ -62,18 +63,38 @@
 		regulator-max-microvolt = <1500000>;
 	};
 
+	gtrefclk_pcie: clock {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <100000000>;
+	};
+
+	gtrefclk_dp: clock {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <27000000>;
+	};
+
+	gtrefclk_usb: clock {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <26000000>;
+	};
+
 };
 
 &spw_0_axi_dma_0 {
-    compatible = "sitf,spw_dma-1.0";
+	compatible = "sitf,spw_dma-1.0";
 	memory-region = <&dma_src_reserved0>;
 	control-regs = <&spw_0_spw_status_regs>;
+	device-name = "spw0";
 };
 
 &spw_1_axi_dma_0 {
-    compatible = "sitf,spw_dma-1.0";
+	compatible = "sitf,spw_dma-1.0";
 	memory-region = <&dma_src_reserved1>;
 	control-regs = <&spw_1_spw_status_regs>;
+	device-name = "spw1";
 };
 
 &pps_system_axi_gpio_0 {
@@ -115,10 +136,38 @@
 	reg= <0x0>;
 };
 
+/* eMMC */
+&sdhci0 { /* emmc MIO 13-23 - with some settings MTFC8GAKAJCN 8GB */
+	non-removable;
+	disable-wp;
+	no-sd;
+	no-sdio;
+	cap-mmc-hw-reset;
+	bus-width = <8>;
+	/* eMMC 4.5 features */
+	/* mmc-hs200-1_8v;  Required for high speed */
+};
 /* SD */
 &sdhci1 {
 	disable-wp;
+	/* This is okay since the SD is behind a converter */
 	no-1-8-v;
+};
+
+&psgtr {
+	status = "okay";
+	clocks = <&gtrefclk_pcie &gtrefclk_usb &gtrefclk_dp &gtrefclk_dp>;
+	/* ref clk instances used per lane */
+	clock-names = "ref0", "ref1", "ref2", "ref3";
+};
+
+/* ULPI SMSC USB3320 */
+&usb0  {
+	status = "okay";
+	/* Link to GT Lane 1 for USB 3.0 Support */
+	/* Syntax: <&psgtr LANE_NUM PHY_TYPE CONTROLLER_INSTANCE LANE_OFFSET> */
+	phys = <&psgtr 1 PHY_TYPE_USB3 0 1>;
+	phy-names = "usb3-phy";
 };
 
 /* USB  */
