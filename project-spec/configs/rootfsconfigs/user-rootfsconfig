@@ -4,3 +4,14 @@
 CONFIG_gpio-demo
 CONFIG_peekpoke
 CONFIG_shells-for-testing-peripheral-devices
+
+#Packages for base XRT support:
+CONFIG_packagegroup-petalinux-xrt
+CONFIG_xrt-dev
+#Packages for easy system management
+CONFIG_dnf
+CONFIG_e2fsprogs-resize2fs
+CONFIG_parted
+
+#Packages for running Vitis-AI demo applications with GUI#
+CONFIG_mesa-megadriver

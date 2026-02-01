@@ -1,6 +1,22 @@
 menu "user packages " 
+config dnf  
+	 bool "dnf"
+	 help
+	
+config e2fsprogs-resize2fs  
+	 bool "e2fsprogs-resize2fs"
+	 help
+	
 config gpio-demo  
 	 bool "gpio-demo"
+	 help
+	
+config mesa-megadriver  
+	 bool "mesa-megadriver"
+	 help
+	
+config parted  
+	 bool "parted"
 	 help
 	
 config peekpoke  
@@ -9,6 +25,10 @@ config peekpoke
 	
 config shells-for-testing-peripheral-devices  
 	 bool "shells-for-testing-peripheral-devices"
+	 help
+	
+config xrt-dev  
+	 bool "xrt-dev"
 	 help
 	
 endmenu

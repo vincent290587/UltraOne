@@ -118,7 +118,7 @@ CONFIG_system-zynqmp=y
 #
 # dnf
 #
-# CONFIG_dnf is not set
+CONFIG_dnf=y
 
 #
 # e2fsprogs 
@@ -127,7 +127,7 @@ CONFIG_system-zynqmp=y
 # CONFIG_e2fsprogs-dev is not set
 CONFIG_e2fsprogs-mke2fs=y
 # CONFIG_e2fsprogs-dbg is not set
-# CONFIG_e2fsprogs-resize2fs is not set
+CONFIG_e2fsprogs-resize2fs=y
 # CONFIG_e2fsprogs-tune2fs is not set
 # CONFIG_libss is not set
 # CONFIG_libcomerr is not set
@@ -146,13 +146,13 @@ CONFIG_e2fsprogs-mke2fs=y
 #
 # elfutils 
 #
-# CONFIG_elfutils is not set
+CONFIG_elfutils=y
 # CONFIG_libdw is not set
 # CONFIG_elfutils-dev is not set
 # CONFIG_elfutils-binutils is not set
 # CONFIG_libelf is not set
 # CONFIG_elfutils-dbg is not set
-# CONFIG_libasm is not set
+CONFIG_libasm=y
 
 #
 # formfactor 
@@ -331,7 +331,7 @@ CONFIG_mtd-utils=y
 #
 # tar 
 #
-# CONFIG_tar is not set
+CONFIG_tar=y
 # CONFIG_tar-dev is not set
 # CONFIG_tar-dbg is not set
 # CONFIG_tar-rmt is not set
@@ -363,14 +363,14 @@ CONFIG_mtd-utils=y
 #
 # usbutils 
 #
-# CONFIG_usbutils is not set
+CONFIG_usbutils=y
 # CONFIG_usbutils-dev is not set
 # CONFIG_usbutils-dbg is not set
 
 #
 # util-linux 
 #
-# CONFIG_util-linux is not set
+CONFIG_util-linux=y
 # CONFIG_util-linux-sulogin is not set
 # CONFIG_util-linux-losetup is not set
 # CONFIG_util-linux-hwclock is not set
@@ -475,7 +475,7 @@ CONFIG_mtd-utils=y
 #
 # dtc 
 #
-# CONFIG_dtc is not set
+CONFIG_dtc=y
 # CONFIG_dtc-dbg is not set
 # CONFIG_dtc-misc is not set
 # CONFIG_dtc-dev is not set
@@ -586,7 +586,7 @@ CONFIG_nfs-utils=y
 #
 # rsync 
 #
-# CONFIG_rsync is not set
+CONFIG_rsync=y
 # CONFIG_rsync-dev is not set
 # CONFIG_rsync-dbg is not set
 
@@ -626,7 +626,7 @@ CONFIG_wget=y
 #
 # parted 
 #
-# CONFIG_parted is not set
+CONFIG_parted=y
 # CONFIG_parted-dev is not set
 # CONFIG_parted-dbg is not set
 
@@ -732,7 +732,7 @@ CONFIG_wget=y
 #
 # gzip 
 #
-# CONFIG_gzip is not set
+CONFIG_gzip=y
 # CONFIG_gzip-dev is not set
 # CONFIG_gzip-dbg is not set
 
@@ -813,7 +813,7 @@ CONFIG_pciutils=y
 #
 # sed 
 #
-# CONFIG_sed is not set
+CONFIG_sed=y
 # CONFIG_sed-dev is not set
 # CONFIG_sed-dbg is not set
 
@@ -856,7 +856,7 @@ CONFIG_pciutils=y
 #
 # unzip 
 #
-# CONFIG_unzip is not set
+CONFIG_unzip=y
 # CONFIG_unzip-dbg is not set
 # CONFIG_unzip-dev is not set
 
@@ -1103,10 +1103,10 @@ CONFIG_run-postinsts=y
 #
 # tcl 
 #
-# CONFIG_tcl is not set
+CONFIG_tcl=y
 # CONFIG_tcl-dbg is not set
-# CONFIG_tcl-lib is not set
-# CONFIG_tcl-dev is not set
+CONFIG_tcl-lib=y
+CONFIG_tcl-dev=y
 
 #
 # vala 
@@ -1242,8 +1242,8 @@ CONFIG_run-postinsts=y
 #
 # flac 
 #
-# CONFIG_flac is not set
-# CONFIG_libflac is not set
+CONFIG_flac=y
+CONFIG_libflac=y
 # CONFIG_flac-dev is not set
 # CONFIG_libflacPLUSPLUS is not set
 # CONFIG_flac-dbg is not set
@@ -2098,8 +2098,8 @@ CONFIG_which=y
 #
 # xrt
 #
-# CONFIG_xrt is not set
-# CONFIG_xrt-dev is not set
+CONFIG_xrt=y
+CONFIG_xrt-dev=y
 # CONFIG_xrt-dbg is not set
 
 #
@@ -2122,7 +2122,7 @@ CONFIG_which=y
 #
 # protobuf
 #
-# CONFIG_protobuf is not set
+CONFIG_protobuf=y
 
 #
 # zlib 
@@ -2516,7 +2516,7 @@ CONFIG_linux-xlnx-udev-rules=y
 #
 # CONFIG_mesa-gl-dev is not set
 # CONFIG_libgl-mesa is not set
-# CONFIG_mesa-megadriver is not set
+CONFIG_mesa-megadriver=y
 # CONFIG_libglapi-dev is not set
 # CONFIG_libglapi is not set
 # CONFIG_libgl-mesa-dev is not set
@@ -3008,7 +3008,7 @@ CONFIG_packagegroup-core-x11-xserver=y
 #
 # rpm 
 #
-# CONFIG_rpm is not set
+CONFIG_rpm=y
 # CONFIG_rpm-build is not set
 # CONFIG_rpm-dbg is not set
 # CONFIG_rpm-dev is not set
@@ -3139,7 +3139,7 @@ CONFIG_tcf-agent=y
 #
 # valgrind
 #
-# CONFIG_valgrind is not set
+CONFIG_valgrind=y
 # CONFIG_valgrind-dbg is not set
 # CONFIG_valgrind-dev is not set
 
@@ -3490,7 +3490,7 @@ CONFIG_wpa-supplicant=y
 #
 # mtools 
 #
-# CONFIG_mtools is not set
+CONFIG_mtools=y
 # CONFIG_mtools-dev is not set
 # CONFIG_mtools-dbg is not set
 
@@ -3508,14 +3508,14 @@ CONFIG_dosfstools=y
 #
 # patch 
 #
-# CONFIG_patch is not set
+CONFIG_patch=y
 # CONFIG_patch-dbg is not set
 # CONFIG_patch-dev is not set
 
 #
 # resize-part
 #
-# CONFIG_resize-part is not set
+CONFIG_resize-part=y
 # CONFIG_resize-part-dbg is not set
 # CONFIG_resize-part-dev is not set
 
@@ -3865,7 +3865,7 @@ CONFIG_xserver-xorg=y
 #
 # packagegroup-xilinx-audio 
 #
-# CONFIG_packagegroup-xilinx-audio is not set
+CONFIG_packagegroup-xilinx-audio=y
 # CONFIG_packagegroup-xilinx-audio-dbg is not set
 # CONFIG_packagegroup-xilinx-audio-dev is not set
 
@@ -3886,7 +3886,7 @@ CONFIG_xserver-xorg=y
 #
 # packagegroup-lmsensors 
 #
-# CONFIG_packagegroup-lmsensors is not set
+CONFIG_packagegroup-lmsensors=y
 # CONFIG_packagegroup-lmsensors-dbg is not set
 # CONFIG_packagegroup-lmsensors-dev is not set
 
@@ -3958,7 +3958,7 @@ CONFIG_xserver-xorg=y
 #
 # Image Features
 #
-# CONFIG_imagefeature-ssh-server-dropbear is not set
+CONFIG_imagefeature-ssh-server-dropbear=y
 CONFIG_imagefeature-ssh-server-openssh=y
 CONFIG_imagefeature-hwcodecs=y
 # CONFIG_imagefeature-package-management is not set
