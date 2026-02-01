@@ -87,6 +87,24 @@
 		clock-frequency = <26000000>;
 	};
 
+	leds {
+		
+		compatible = "gpio-leds";
+
+		led0 {
+			gpios = <&axi_gpio_leds 0 GPIO_ACTIVE_LOW>;
+			linux,default-trigger = "disk-activity";
+			function = "disk-activity";
+		};
+
+		led1 {
+			gpios = <&axi_gpio_leds 1 GPIO_ACTIVE_LOW>;
+			linux,default-trigger = "heartbeat";
+			function = "heartbeat";
+		};
+
+	};
+
 };
 
 &spw_0_axi_dma_0 {
