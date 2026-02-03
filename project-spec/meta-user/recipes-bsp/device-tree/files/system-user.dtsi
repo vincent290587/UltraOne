@@ -134,6 +134,14 @@
 	gpio-line-names = "tck", "tdi", "tms", "tdo";
 };
 
+&axi_gpio_swd {
+	gpio-line-names = "swdio", "trst", "swdclk";
+};
+
+&axi_gpio_security {
+	gpio-line-names = "seca", "secb";
+};
+
 &axi_gpio_leds {
 	gpio-line-names = "led1", "led2", "led3", "led4";
 };
@@ -144,10 +152,27 @@
 
 &i2c1 {
 	clock-frequency = <400000>;
+
 	eeprom@50{
 		compatible = "atmel,24c04";
 		reg = <0x50>;
 		pagesize = <16>;
+	};
+
+	ds28c36@1B{
+		compatible = "analog,ds28c36";
+		reg = <0x1B>;
+	};
+
+	si5332: clock-generator@76{
+		compatible = "silabs,si5332";
+		reg = <0x76>;
+	};
+
+	tps65086: pmic@5E {
+		compatible = "ti,tps65086";
+		reg = <0x5E>;
+		ti,system-power-controller;
 	};
 };
 
