@@ -87,7 +87,7 @@ CONFIG_system-zynqmp=y
 #
 # dbus 
 #
-# CONFIG_dbus is not set
+CONFIG_dbus=y
 # CONFIG_dbus-dbg is not set
 # CONFIG_dbus-lib is not set
 # CONFIG_dbus-dev is not set
@@ -111,7 +111,7 @@ CONFIG_system-zynqmp=y
 #
 # diffutils 
 #
-# CONFIG_diffutils is not set
+CONFIG_diffutils=y
 # CONFIG_diffutils-dbg is not set
 # CONFIG_diffutils-dev is not set
 
@@ -181,7 +181,7 @@ CONFIG_fpga-manager-script=y
 #
 # i2c-tools 
 #
-# CONFIG_i2c-tools is not set
+CONFIG_i2c-tools=y
 # CONFIG_i2c-tools-dev is not set
 # CONFIG_i2c-tools-misc is not set
 # CONFIG_i2c-tools-dbg is not set
@@ -189,7 +189,7 @@ CONFIG_fpga-manager-script=y
 #
 # init-ifupdown 
 #
-# CONFIG_init-ifupdown is not set
+CONFIG_init-ifupdown=y
 # CONFIG_init-ifupdown-dev is not set
 # CONFIG_init-ifupdown-dbg is not set
 
@@ -204,7 +204,7 @@ CONFIG_fpga-manager-script=y
 #
 # iproute2 
 #
-# CONFIG_iproute2 is not set
+CONFIG_iproute2=y
 # CONFIG_iproute2-ss is not set
 # CONFIG_iproute2-dev is not set
 # CONFIG_iproute2-dbg is not set
@@ -244,9 +244,9 @@ CONFIG_fpga-manager-script=y
 #
 CONFIG_mtd-utils=y
 # CONFIG_mtd-utils-jffs2 is not set
-# CONFIG_mtd-utils-misc is not set
+CONFIG_mtd-utils-misc=y
 # CONFIG_mtd-utils-dev is not set
-# CONFIG_mtd-utils-ubifs is not set
+CONFIG_mtd-utils-ubifs=y
 # CONFIG_mtd-utils-dbg is not set
 
 #
@@ -259,7 +259,7 @@ CONFIG_mtd-utils=y
 #
 # opkg 
 #
-# CONFIG_opkg is not set
+CONFIG_opkg=y
 # CONFIG_libopkg is not set
 # CONFIG_opkg-dbg is not set
 # CONFIG_opkg-dev is not set
@@ -267,14 +267,14 @@ CONFIG_mtd-utils=y
 #
 # opkg-utils 
 #
-# CONFIG_opkg-utils is not set
+CONFIG_opkg-utils=y
 # CONFIG_opkg-utils-dbg is not set
 # CONFIG_update-alternatives-opkg is not set
 
 #
 # procps 
 #
-# CONFIG_procps is not set
+CONFIG_procps=y
 # CONFIG_procps-dev is not set
 # CONFIG_procps-dbg is not set
 
@@ -315,7 +315,7 @@ CONFIG_mtd-utils=y
 #
 # bash 
 #
-# CONFIG_bash is not set
+CONFIG_bash=y
 # CONFIG_bash-dbg is not set
 # CONFIG_bash-dev is not set
 
@@ -379,10 +379,10 @@ CONFIG_util-linux=y
 # CONFIG_util-linux-bash-completion is not set
 # CONFIG_util-linux-fstrim is not set
 # CONFIG_util-linux-cfdisk is not set
-# CONFIG_util-linux-umount is not set
+CONFIG_util-linux-umount=y
 # CONFIG_util-linux-findfs is not set
 # CONFIG_util-linux-agetty is not set
-# CONFIG_util-linux-mount is not set
+CONFIG_util-linux-mount=y
 # CONFIG_util-linux-sfdisk is not set
 # CONFIG_util-linux-swaponoff is not set
 # CONFIG_util-linux-fsck.cramfs is not set
@@ -392,11 +392,11 @@ CONFIG_util-linux=y
 # CONFIG_util-linux-blkid is not set
 # CONFIG_util-linux-dev is not set
 # CONFIG_util-linux-partx is not set
-# CONFIG_util-linux-mkfs is not set
+CONFIG_util-linux-mkfs=y
 # CONFIG_util-linux-readprofile is not set
-# CONFIG_util-linux-mountpoint is not set
-# CONFIG_util-linux-fdisk is not set
-# CONFIG_util-linux-lscpu is not set
+CONFIG_util-linux-mountpoint=y
+CONFIG_util-linux-fdisk=y
+CONFIG_util-linux-lscpu=y
 # CONFIG_util-linux-dbg is not set
 # CONFIG_util-linux-uuidd is not set
 # CONFIG_util-linux-mkfs.cramfs is not set
@@ -416,7 +416,7 @@ CONFIG_util-linux=y
 #
 # xz 
 #
-# CONFIG_xz is not set
+CONFIG_xz=y
 # CONFIG_xz-dev is not set
 # CONFIG_xz-dbg is not set
 # CONFIG_liblzma is not set
@@ -799,14 +799,14 @@ CONFIG_pciutils=y
 #
 # pkgconfig 
 #
-# CONFIG_pkgconfig is not set
+CONFIG_pkgconfig=y
 # CONFIG_pkgconfig-dev is not set
 # CONFIG_pkgconfig-dbg is not set
 
 #
 # screen 
 #
-# CONFIG_screen is not set
+CONFIG_screen=y
 # CONFIG_screen-dev is not set
 # CONFIG_screen-dbg is not set
 
@@ -834,7 +834,7 @@ CONFIG_sed=y
 #
 # strace 
 #
-# CONFIG_strace is not set
+CONFIG_strace=y
 # CONFIG_strace-dev is not set
 # CONFIG_strace-dbg is not set
 
@@ -876,7 +876,7 @@ CONFIG_unzip=y
 #
 # zip 
 #
-# CONFIG_zip is not set
+CONFIG_zip=y
 # CONFIG_zip-dev is not set
 # CONFIG_zip-dbg is not set
 
@@ -958,7 +958,7 @@ CONFIG_binutils=y
 #
 # gnu-config 
 #
-# CONFIG_gnu-config is not set
+CONFIG_gnu-config=y
 
 #
 # gnu-efi 
@@ -1004,7 +1004,7 @@ CONFIG_binutils=y
 #
 # lsof 
 #
-# CONFIG_lsof is not set
+CONFIG_lsof=y
 # CONFIG_lsof-dev is not set
 # CONFIG_lsof-dbg is not set
 
@@ -1065,7 +1065,7 @@ CONFIG_make=y
 #
 # quilt 
 #
-# CONFIG_quilt is not set
+CONFIG_quilt=y
 # CONFIG_quilt-dev is not set
 # CONFIG_quilt-dbg is not set
 # CONFIG_guards is not set
@@ -1181,7 +1181,7 @@ CONFIG_tcl-dev=y
 #
 # bluez5 
 #
-# CONFIG_bluez5 is not set
+CONFIG_bluez5=y
 # CONFIG_bluez5-obex is not set
 # CONFIG_bluez5-dev is not set
 # CONFIG_bluez5-dbg is not set
@@ -1334,8 +1334,8 @@ CONFIG_libflac=y
 #
 # libaio 
 #
-# CONFIG_libaio is not set
-# CONFIG_libaio-dev is not set
+CONFIG_libaio=y
+CONFIG_libaio-dev=y
 # CONFIG_libaio-dbg is not set
 
 #
@@ -1456,8 +1456,8 @@ CONFIG_libdfx=y
 #
 # libgpiod
 #
-# CONFIG_libgpiod is not set
-# CONFIG_libgpiod-dev is not set
+CONFIG_libgpiod=y
+CONFIG_libgpiod-dev=y
 # CONFIG_libgpiod-dbg is not set
 
 #
@@ -1587,9 +1587,9 @@ CONFIG_libdfx=y
 #
 # libpng 
 #
-# CONFIG_libpng is not set
+CONFIG_libpng=y
 # CONFIG_libpng-dbg is not set
-# CONFIG_libpng-dev is not set
+CONFIG_libpng-dev=y
 # CONFIG_libpng-tools is not set
 
 #
@@ -1638,8 +1638,8 @@ CONFIG_libdfx=y
 #
 # libtool 
 #
-# CONFIG_libtool is not set
-# CONFIG_libtool-dev is not set
+CONFIG_libtool=y
+CONFIG_libtool-dev=y
 # CONFIG_libltdl is not set
 # CONFIG_libtool-dbg is not set
 
@@ -1653,15 +1653,15 @@ CONFIG_libdfx=y
 #
 # libusb-compat 
 #
-# CONFIG_libusb-compat is not set
+CONFIG_libusb-compat=y
 # CONFIG_libusb-compat-dbg is not set
 # CONFIG_libusb-compat-dev is not set
 
 #
 # libusb1 
 #
-# CONFIG_libusb1 is not set
-# CONFIG_libusb1-dev is not set
+CONFIG_libusb1=y
+CONFIG_libusb1-dev=y
 # CONFIG_libusb1-dbg is not set
 
 #
@@ -1682,9 +1682,9 @@ CONFIG_libdfx=y
 #
 # libx11 
 #
-# CONFIG_libx11 is not set
+CONFIG_libx11=y
 # CONFIG_libx11-xcb is not set
-# CONFIG_libx11-dev is not set
+CONFIG_libx11-dev=y
 # CONFIG_libx11-dbg is not set
 
 #
