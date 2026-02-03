@@ -223,6 +223,13 @@
 	phy-names = "usb3-phy";
 };
 
+&pcie {
+	status = "okay";
+	/* Point to the GTR PHY lane 0 */
+	phys = <&psgtr 0 PHY_TYPE_PCIE 0 0>;
+	phy-names = "pcie-phy0";
+};
+
 /* USB  */
 &dwc3_0 {
 	status = "okay";
