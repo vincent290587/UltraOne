@@ -105,6 +105,19 @@
 
 	};
 
+	/* Define the physical connector */
+	display_port: connector {
+		compatible = "dp-connector";
+		label = "DP-0";
+		type = "mini";
+
+		port {
+			dp_connector_in: endpoint {
+				remote-endpoint = <&dp_out>;
+			};
+		};
+	};
+
 };
 
 &spw_0_axi_dma_0 {
@@ -236,6 +249,45 @@
 &dwc3_0 {
 	status = "okay";
 	dr_mode = "host";
+};
+
+&gpio {
+    /* MIO 29: DP_OE (Output Enable) */
+    dp_en_hog {
+        gpio-hog;
+        gpios = <29 0>; 
+        output-high;
+        line-name = "dp-output-enable";
+    };
+
+    /* MIO 30: HUB_RESET_IO */
+    hub_reset_hog {
+        gpio-hog;
+        gpios = <30 0>;
+        output-high; /* Assuming active-low reset, set high to run */
+        line-name = "hub-reset";
+    };
+};
+
+&zynqmp_dpsub {
+	
+	/* * Clocks: 
+     * 71 = dp_lsbus (<=100MHz to fix 'aclk too high')
+     * 51 = dp_aud_ref
+     * 44 = dp_stc_ref (Dummy for vtc_pixel_clk)
+     */
+    clocks = <&zynqmp_clk 71>, <&zynqmp_clk 51>, <&zynqmp_clk 44>;
+    clock-names = "dp_apb_clk", "dp_aud_clk", "dp_vtc_pixel_clk_in";
+
+	/* This section resolves the 'DP output port not connected' error */
+	ports {
+		port@5 {
+			reg = <5>;
+			dp_out: endpoint {
+				remote-endpoint = <&dp_connector_in>;
+			};
+		};
+	};
 };
 
 /* Ensure the AMS and fan are actually enabled */
