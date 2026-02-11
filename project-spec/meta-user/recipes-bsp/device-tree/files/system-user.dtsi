@@ -252,20 +252,12 @@
 };
 
 &gpio {
-    /* MIO 29: DP_OE (Output Enable) */
+    /* MIO 29: DP_OE (nOutput Enable) */
     dp_en_hog {
         gpio-hog;
         gpios = <29 0>; 
-        output-high;
+        output-low;
         line-name = "dp-output-enable";
-    };
-
-    /* MIO 30: HUB_RESET_IO */
-    hub_reset_hog {
-        gpio-hog;
-        gpios = <30 0>;
-        output-high; /* Assuming active-low reset, set high to run */
-        line-name = "hub-reset";
     };
 };
 
