@@ -15,6 +15,10 @@ config mesa-megadriver
 	 bool "mesa-megadriver"
 	 help
 	
+config packagegroup-petalinux-xrt  
+	 bool "packagegroup-petalinux-xrt"
+	 help
+	
 config parted  
 	 bool "parted"
 	 help
@@ -25,6 +29,10 @@ config peekpoke
 	
 config shells-for-testing-peripheral-devices  
 	 bool "shells-for-testing-peripheral-devices"
+	 help
+	
+config wifi-init  
+	 bool "wifi-init"
 	 help
 	
 config xrt-dev  

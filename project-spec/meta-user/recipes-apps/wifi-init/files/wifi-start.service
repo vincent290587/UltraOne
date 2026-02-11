@@ -1,0 +1,13 @@
+[Unit]
+Description=Connect to WiFi
+After=network.target
+
+[Service]
+Type=simple
+ExecStartPre=/sbin/ip link set wlp1s0 up
+ExecStart=/usr/sbin/wpa_supplicant -i wlp1s0 -c /etc/wpa_supplicant.conf
+ExecStartPost=/sbin/udhcpc -i wlp1s0
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

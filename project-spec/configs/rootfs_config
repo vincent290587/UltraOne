@@ -1191,9 +1191,9 @@ CONFIG_bluez5=y
 #
 # cairo 
 #
-# CONFIG_cairo is not set
+CONFIG_cairo=y
 # CONFIG_cairo-dbg is not set
-# CONFIG_cairo-dev is not set
+CONFIG_cairo-dev=y
 # CONFIG_cairo-script-interpreter is not set
 # CONFIG_cairo-gobject is not set
 
@@ -1971,7 +1971,7 @@ CONFIG_libx11-dev=y
 #
 # libsocketcan 
 #
-# CONFIG_libsocketcan is not set
+CONFIG_libsocketcan=y
 # CONFIG_libsocketcan-dev is not set
 # CONFIG_libsocketcan-dbg is not set
 
@@ -2195,7 +2195,7 @@ CONFIG_zlib=y
 #
 # ca-certificates 
 #
-# CONFIG_ca-certificates is not set
+CONFIG_ca-certificates=y
 # CONFIG_ca-certificates-dev is not set
 # CONFIG_ca-certificates-dbg is not set
 
@@ -3972,8 +3972,10 @@ CONFIG_Init-manager-systemd=y
 # user packages 
 #
 # CONFIG_gpio-demo is not set
+# CONFIG_packagegroup-petalinux-xrt is not set
 # CONFIG_peekpoke is not set
 CONFIG_shells-for-testing-peripheral-devices=y
+CONFIG_wifi-init=y
 
 #
 # PetaLinux RootFS Settings

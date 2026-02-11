@@ -228,6 +228,8 @@
 	/* Point to the GTR PHY lane 0 */
 	phys = <&psgtr 0 PHY_TYPE_PCIE 0 0>;
 	phy-names = "pcie-phy0";
+	msi-controller; /* Ensure this is here */
+	msi-parent = <&pcie>; /* Point to itself or the GIC */
 };
 
 /* USB  */
