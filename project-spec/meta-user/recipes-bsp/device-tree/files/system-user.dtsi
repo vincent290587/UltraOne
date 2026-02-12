@@ -108,7 +108,7 @@
 	/* Define the physical connector */
 	display_port: connector {
 		compatible = "dp-connector";
-		label = "DP-0";
+		label = "DP-OUT";
 		type = "mini";
 
 		port {
@@ -222,9 +222,9 @@
 
 &psgtr {
 	status = "okay";
-	clocks = <&gtrefclk_pcie &gtrefclk_usb &gtrefclk_dp &gtrefclk_dp>;
+	clocks = <&gtrefclk_pcie &gtrefclk_usb &gtrefclk_dp>;
 	/* ref clk instances used per lane */
-	clock-names = "ref0", "ref1", "ref2", "ref3";
+	clock-names = "ref0", "ref1", "ref2";
 };
 
 /* ULPI SMSC USB3320 */
@@ -262,15 +262,6 @@
 };
 
 &zynqmp_dpsub {
-	
-	/* * Clocks: 
-     * 71 = dp_lsbus (<=100MHz to fix 'aclk too high')
-     * 51 = dp_aud_ref
-     * 44 = dp_stc_ref (Dummy for vtc_pixel_clk)
-     */
-    clocks = <&zynqmp_clk 71>, <&zynqmp_clk 51>, <&zynqmp_clk 44>;
-    clock-names = "dp_apb_clk", "dp_aud_clk", "dp_vtc_pixel_clk_in";
-
 	/* This section resolves the 'DP output port not connected' error */
 	ports {
 		port@5 {
