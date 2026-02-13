@@ -69,19 +69,19 @@
 		regulator-max-microvolt = <1500000>;
 	};
 
-	gtrefclk_pcie: clock {
+	gtrefclk_pcie: gtrefclk_pcie_clk {
 		compatible = "fixed-clock";
 		#clock-cells = <0>;
 		clock-frequency = <100000000>;
 	};
 
-	gtrefclk_dp: clock {
+	gtrefclk_dp: gtrefclk_dp_clk {
 		compatible = "fixed-clock";
 		#clock-cells = <0>;
 		clock-frequency = <27000000>;
 	};
 
-	gtrefclk_usb: clock {
+	gtrefclk_usb: gtrefclk_usb_clk {
 		compatible = "fixed-clock";
 		#clock-cells = <0>;
 		clock-frequency = <26000000>;
